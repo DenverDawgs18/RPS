@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function getComputerChoice(){
+            // pick a random number between 1 and 3
+            let number = Math.floor(Math.random() * (3 -1 + 1)) + 1;
+            // if number is one return rock
+            if (number === 1){
+                return "rock";
+            }
+            // if number is two return paper
+            else if (number === 2){
+                return "paper";
+            }
+            // if number is three return scissors
+            else{
+                return "scissors"
+            }
+        }
+        function playRound(playerSelection, computerSelection){
+
+        }
+        console.log(getComputerChoice())
+    </script>
+</body>
+</html>
