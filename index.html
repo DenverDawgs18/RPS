@@ -25,8 +25,19 @@
         }
         function playRound(playerSelection, computerSelection){
 
+            if ((playerSelection.toLowerCase() === "rock" && computerSelection.toLowerCase() === "scissors") 
+                || (playerSelection.toLowerCase() === "paper" && computerSelection.toLowerCase() === "rock")
+                || (playerSelection.toLowerCase() === "scissors" && computerSelection.toLowerCase() === "paper")
+            ){   
+            return `You Win! ${playerSelection} beats ${computerSelection}`
+        }   
+            else{
+                return `You Lose! ${computerSelection} beats ${playerSelection}`
+            }
+
         }
-        console.log(getComputerChoice())
+        console.log(playRound("rock", getComputerChoice()))
+    
     </script>
 </body>
 </html>
