@@ -24,8 +24,11 @@
             }
         }
         function playRound(playerSelection, computerSelection){
+            if (playerSelection.toLowerCase() === computerSelection.toLowerCase() ){
+                return "tie"
+            }
 
-            if ((playerSelection.toLowerCase() === "rock" && computerSelection.toLowerCase() === "scissors") 
+            else if ((playerSelection.toLowerCase() === "rock" && computerSelection.toLowerCase() === "scissors") 
                 || (playerSelection.toLowerCase() === "paper" && computerSelection.toLowerCase() === "rock")
                 || (playerSelection.toLowerCase() === "scissors" && computerSelection.toLowerCase() === "paper")
             ){   
@@ -36,8 +39,63 @@
             }
 
         }
-        console.log(playRound("rock", getComputerChoice()))
-    
+        function clean(data){
+            if (data.toLowerCase() === "rock" || data.toLowerCase() === "paper" || data.toLowerCase()
+            === "scissors"){
+                return "clean"
+        }
+            else{
+                return "not clean"
+            }
+        }
+        function game(){
+            let playerScore = 0;
+            let computerScore = 0;
+            let score = 0;
+            while (true){
+                if (score === 5){
+                    if (playerScore >= 3){
+                        console.log(`You won by a score of ${playerScore} to ${computerScore}`)
+                        break
+                    }
+                    else{
+                        console.log(`You lost by a score of ${computerScore} to ${playerScore}`)
+                        break
+                    }
+                }
+
+                let checkCondition = true;
+                let playerChoice = prompt("What is your choice? ")
+                while(checkCondition){
+                    let cleanedPlayer = clean(playerChoice);
+                    if (cleanedPlayer === "clean"){
+                        checkCondition = false;
+                    }
+                    else{
+                        alert("please enter rock paper or scissors")
+                        playerChoice = prompt("What is your choice? ")
+                    }
+                }
+                check = playRound(playerChoice, getComputerChoice())
+                if (check === "tie"){
+                    //pass
+                    console.log("Tie")
+                }
+                else if (check.slice(4, 7) === "Win"){
+                    playerScore++
+                    score++
+                    console.log(check)
+                }
+                else{
+                    console.log(check)
+                    computerScore++
+                    score++
+                }
+                
+
+            }
+        }
+        game()
     </script>
 </body>
 </html>
