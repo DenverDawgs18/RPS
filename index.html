@@ -6,6 +6,16 @@
     <title>Document</title>
 </head>
 <body>
+    <!-- Create three buttons one for each choice
+    When button is clicked call play round using the correct choice
+    Create a div that displays current score -->
+    <button id="rock">Rock</button>
+    <button id="paper"> Paper </button>
+    <button id="scissors"> Scissors </button>
+    <div class="results"> 
+        <p id="computerScoreDOM"> Computer Score: <span id="realCScore"> 0 </span></p>
+        <p id="playerScoreDOM"> Player Score: <span id="realPlayerScore"> 0 </span></p>
+    </div>
     <script>
         function getComputerChoice(){
             // pick a random number between 1 and 3
@@ -23,6 +33,28 @@
                 return "scissors"
             }
         }
+        const rock = document.querySelector("#rock");
+        const paper = document.querySelector("#paper");
+        const scissors = document.querySelector("#scissors");
+        const results = document.querySelector(".results")
+        const realCScore = document.querySelector("#realCScore");
+        const realPlayerScore = document.querySelector("#realPlayerScore");
+        let playerScore = 0;
+        let computerScore = 0;
+        rock.addEventListener("click", function(){
+            let result = playRound("rock", getComputerChoice());
+        }
+        );
+        paper.addEventListener("click", function(){
+            let result = playRound("paper", getComputerChoice());
+            console.log(result);
+        }
+        );
+        scissors.addEventListener("click", function(){
+            let result = playRound("scissors", getComputerChoice());
+            console.log(result);
+        }
+        );
         function playRound(playerSelection, computerSelection){
             if (playerSelection.toLowerCase() === computerSelection.toLowerCase() ){
                 return "tie"
@@ -32,13 +64,31 @@
                 || (playerSelection.toLowerCase() === "paper" && computerSelection.toLowerCase() === "rock")
                 || (playerSelection.toLowerCase() === "scissors" && computerSelection.toLowerCase() === "paper")
             ){   
+                playerScore++;
+                if (playerScore === 5){
+                    alert(`You have won by a score of ${playerScore} to ${computerScore}`);
+                    window.location.reload()
+                }
+                realPlayerScore.textContent = playerScore; 
+                
             return `You Win! ${playerSelection} beats ${computerSelection}`
         }   
             else{
+                computerScore++;
+                if (computerScore === 5){
+                    alert(`You have lost by a score of ${computerScore} to ${playerScore}`);
+                    window.location.reload()
+                }
+                realCScore.textContent = computerScore;
                 return `You Lose! ${computerSelection} beats ${playerSelection}`
             }
 
         }
+
+
+        
+
+    /* 
         function clean(data){
             if (data.toLowerCase() === "rock" || data.toLowerCase() === "paper" || data.toLowerCase()
             === "scissors"){
@@ -48,6 +98,7 @@
                 return "not clean"
             }
         }
+    For console version of the game
         function game(){
             let playerScore = 0;
             let computerScore = 0;
@@ -96,6 +147,7 @@
             }
         }
         game()
+    */
     </script>
 </body>
 </html>
